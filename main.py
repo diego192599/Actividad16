@@ -96,5 +96,16 @@ class Prestamo():
         return f"{self.libro.titulo} a {self.usuario.nombre} | Fecha préstamo: {self.fecha_prestamo.date()} | Estado: {estado}"
 
 class gestionPrestamo():
+    def __init__(self):
+        self.prestamos=[]
+
+    def prestarLibro(self,usuario,libro,fecha):
+        if not libro.disponible:
+            raise  ValueError("El libro no se encuentra disponible")
+        libro.disponible=False
+        prestamo=Prestamo(usuario,libro,fecha)
+        self.prestamos.append(prestamo)
+
+    def
 
 
