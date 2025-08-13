@@ -57,4 +57,17 @@ class gestionUsuario():
             print(f"Usuario #{i+1}")
             nombre=input("Ingrese el nombre del usuario: ")
             edad=int(input("Ingrese la edad del usuario: "))
+            self.lista_usuario.append(usuarios(nombre,edad))
+            print("Usuario agregado.")
+    def mostrar(self):
+        if not self.lista_usuario:
+            print("No hay usuarios registrados.")
+            return
+        else:
+            print("\n Lista de Usuarios.")
+            for i,usua in enumerate(self.lista_usuario,start=1):
+                print(f"{i}. {usua.mostrar_infoUsuario()}")
+            print()
+
+
 
