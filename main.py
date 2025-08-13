@@ -80,4 +80,21 @@ class gestionUsuario():
 
 class Prestamo():
     def __init__(self,usuario,libro,fecha_prestamo):
+        self.usuario = usuario
+        self.libro = libro
+        self.fecha_prestamo = fecha_prestamo
+        self.fecha_devolucion = None
+
+    def devolver(self, fecha_devolucion):
+        if fecha_devolucion < self.fecha_prestamo:
+            raise ValueError("La fecha de devolución no puede ser anterior a la fecha de préstamo.")
+        self.fecha_devolucion = fecha_devolucion
+        self.libro.disponible = True
+
+    def mostrar_info(self):
+        estado = "Devuelto" if self.fecha_devolucion else "Prestado"
+        return f"{self.libro.titulo} a {self.usuario.nombre} | Fecha préstamo: {self.fecha_prestamo.date()} | Estado: {estado}"
+
+class gestionPrestamo():
+
 
