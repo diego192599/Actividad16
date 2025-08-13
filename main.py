@@ -69,5 +69,15 @@ class gestionUsuario():
                 print(f"{i}. {usua.mostrar_infoUsuario()}")
             print()
 
+    def eliminar(self):
+        nombre_buscado=input("Ingrese al usuario que se va a eliminar: ")
+        for nomb in self.lista_usuario:
+            if nomb.nombre.lower()==nombre_buscado.lower():
+                self.lista_usuario.remove(nomb)
+                print("Usuario eliminado")
+                return
+        print("Usuario no encontrado")
 
+class Prestamo():
+    def __init__(self,usuario,libro,fecha_prestamo):
 
