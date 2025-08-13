@@ -121,4 +121,69 @@ class gestionPrestamo():
                 print(f"{i}. {p.mostrar_info()}")
 
 
+from datetime import datetime
 
+gestor_libros = gestionLibors()
+gestor_usuarios = gestionUsuario()
+gestor_prestamos = gestionPrestamo()
+
+while True:
+    print("\n--- Menú Biblioteca ---")
+    print("1. Agregar libros")
+    print("2. Mostrar libros")
+    print("3. Eliminar libro")
+    print("4. Agregar usuarios")
+    print("5. Mostrar usuarios")
+    print("6. Prestar libro")
+    print("7. Devolver libro")
+    print("8. Mostrar préstamos")
+    print("9. Salir")
+
+    opcion = input("Seleccione una opción: ")
+
+    try:
+        match opcion:
+            case "1":
+                gestor_libros.agregarLibros()
+
+            case "2":
+                gestor_libros.mosstrar()
+
+            case "3":
+                gestor_libros.eliminar()
+
+            case "4":
+                gestor_usuarios.agregarUsuario()
+
+            case "5":
+                gestor_usuarios.mostrar()
+
+            case "6":
+                carnet = input("Carnet del usuario: ")
+                codigo = input("Código del libro: ")
+                fecha = datetime.strptime(input("Fecha de préstamo (YYYY-MM-DD): "), "%Y-%m-%d")
+                usuario = next((u for u in gestor_usuarios.lista_usuario if u.carnet == carnet), None)
+                libro = gestor_libros.libros.get(codigo)
+                if not usuario or not libro:
+                    raise ValueError("Usuario o libro no encontrado.")
+                gestor_prestamos.prestar_libro(usuario, libro, fecha)
+                print("Préstamo realizado.")
+
+            case "7":
+                codigo = input("Código del libro: ")
+                fecha = datetime.strptime(input("Fecha de devolución (YYYY-MM-DD): "), "%Y-%m-%d")
+                gestor_prestamos.devolver_libro(codigo, fecha)
+                print("Libro devuelto.")
+
+            case "8":
+                gestor_prestamos.mostrar_prestamos()
+
+            case "9":
+                print("¡Hasta luego!")
+                break
+
+            case _:
+                print("Opción inválida.")
+
+    except Exception as e:
+        print(f"Error: {e}")
