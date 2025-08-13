@@ -27,6 +27,18 @@ class gestionLibors():
     def mosstrar(self):
         if not self.libros:
             print("No hay ningun libro registrado")
+            return
+        print("\n Lista de libros")
+        for i,libr in enumerate(self.libros.values(),start=1):
+            print(f"{i}. {libr.mostrar_info()}")
+        print()
+    def eliminar(self):
+        codigo_buscado=input("Ingrese el codigo del libro a eliminar: ")
+        if codigo_buscado in self.libros:
+            del self.libros[codigo_buscado]
+            print("Libro eliminado")
+        else:
+            print("El codigo de libro no encontrado.")
 
 class usuarios():
     def __init__(self, nombre, edad):
@@ -38,4 +50,11 @@ class usuarios():
 
 class gestionUsuario():
     def __init__(self):
+        self.lista_usuario=[]
+    def agregarUsuario(self):
+        cantidad=int(input("Ingrese la cantidad de usuarios a registrar: "))
+        for i in range(cantidad):
+            print(f"Usuario #{i+1}")
+            nombre=input("Ingrese el nombre del usuario: ")
+            edad=int(input("Ingrese la edad del usuario: "))
 
