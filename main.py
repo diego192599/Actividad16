@@ -106,6 +106,19 @@ class gestionPrestamo():
         prestamo=Prestamo(usuario,libro,fecha)
         self.prestamos.append(prestamo)
 
-    def
+    def  devolver(self, codigo_libro,fecha):
+        for prestamo in self.prestamos:
+            if prestamo.libro.codigo== codigo_libro and prestamo.fecha_devolucion is None:
+                prestamo.devolver(fecha)
+                return
+        raise ValueError("No se encontro el libro")
+
+    def mostrar_prestamos(self):
+        if not self.prestamos:
+            print("No hay préstamos registrados.")
+        else:
+            for i, p in enumerate(self.prestamos, start=1):
+                print(f"{i}. {p.mostrar_info()}")
+
 
 
